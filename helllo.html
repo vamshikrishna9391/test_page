@@ -168,7 +168,7 @@
                 <button class="sub_btn" onclick="get()">Submit</button>
                 <!-- <a class="ancherEl" href="http://localhost:3002/createuser/">Create an account</a> -->
                 <!-- <a class="ancherEl" href="https://test-1-riqt.onrender.com/createuser/">Create an account</a> -->
-                <a class="ancherEl" href="http://localhost:3003/createuser">Create an account</a>
+                <a class="ancherEl" href="https://test-page-ozyo.onrender.com///createuser">Create an account</a>
             </div>
         </div>
     </div>
@@ -192,7 +192,7 @@
             function showName (jsonData){
                 if(jsonData.jwtToken !== undefined){
                     localStorage.setItem("userDataInLocal", JSON.stringify(jsonData));
-                    window.location.replace("http://localhost:3003/chatpage");
+                    window.location.replace("https://test-page-ozyo.onrender.com///chatpage");
 
                 }else if (jsonData.user !== undefined){
                     nameErr.textContent = jsonData.user;
@@ -218,7 +218,7 @@
                     },
                     body: JSON.stringify(data)
                 }
-                fetch('http://localhost:3003/login/', options)
+                fetch('https://test-page-ozyo.onrender.com///login/', options)
                 .then(function(response) {
                     return response.json();
                 })
@@ -228,7 +228,7 @@
             }
 
         }else{
-            window.location.replace("http://localhost:3003/chatpage");
+            window.location.replace("https://test-page-ozyo.onrender.com///chatpage");
             // document.getElementById("loginSuccess").textContent = "Welcom " + retraveData.name
             // loginPage.classList.add('d-none');
             // loginSuccess.classList.add('d-flex');
