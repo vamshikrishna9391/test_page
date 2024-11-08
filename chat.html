@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
-<!-- link  https://test-page-ozyo.onrender.com// -->
-<!-- link  https://test-page-ozyo.onrender.com// -->
+<!-- link  https://test-page-ozyo.onrender.com/ -->
+<!-- link  https://test-page-ozyo.onrender.com/ -->
 
 
 <html>
@@ -430,10 +430,10 @@
           window.retraveData = JSON.parse(localStorage.getItem("userDataInLocal"))
           console.log(retraveData)
           if ((retraveData === null)){
-            window.location.replace("https://test-page-ozyo.onrender.com///");
+            window.location.replace("https://test-page-ozyo.onrender.com/");
           }
           if (retraveData.isActive === 0){
-            window.location.replace("https://test-page-ozyo.onrender.com///");
+            window.location.replace("https://test-page-ozyo.onrender.com/");
           }
 
           const navList = document.getElementById("navListcontainer")
@@ -506,13 +506,13 @@
               body: JSON.stringify(data)
             }
       
-            fetch('https://test-page-ozyo.onrender.com///logout/', options)
+            fetch('https://test-page-ozyo.onrender.com/logout/', options)
             .then(function(response) {
                 return response.json();
             })
             .then(function(jsonData) {
               localStorage.setItem("userDataInLocal", JSON.stringify(jsonData));
-              window.location.replace("https://test-page-ozyo.onrender.com///");
+              window.location.replace("https://test-page-ozyo.onrender.com/");
             });
 
           }
@@ -650,7 +650,7 @@
             let options = {
             method: "GET"
             }
-            let url = "https://test-page-ozyo.onrender.com///getfriends/" + retraveData.id;
+            let url = "https://test-page-ozyo.onrender.com/getfriends/" + retraveData.id;
     
             fetch(url, options)
               .then(function(response) {
@@ -761,7 +761,7 @@
             body: JSON.stringify(data)
           }
     
-            fetch('https://test-page-ozyo.onrender.com///sendmessage/', options)
+            fetch('https://test-page-ozyo.onrender.com/sendmessage/', options)
             .then(function(response) {
                 return response.json();
             })
@@ -807,7 +807,7 @@
               body: JSON.stringify(data)
             }
     
-            fetch('https://test-page-ozyo.onrender.com///getmessage/', options)
+            fetch('https://test-page-ozyo.onrender.com/getmessage/', options)
               .then(function(response) {
                   return response.json();
               })
@@ -895,7 +895,7 @@
               },
               body: JSON.stringify(data)
             }
-            fetch('https://test-page-ozyo.onrender.com///savefriend/', options)
+            fetch('https://test-page-ozyo.onrender.com/savefriend/', options)
               .then(function(response) {
                   return response.json();
               })
@@ -910,7 +910,7 @@
             let options = {
               method: "GET"
             }
-            let url = "https://test-page-ozyo.onrender.com///getfriend/" + userName
+            let url = "https://test-page-ozyo.onrender.com/getfriend/" + userName
             fetch(url, options)
               .then(function(response) {
                   return response.json();
