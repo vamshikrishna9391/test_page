@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+
+<!-- link  http://localhost:3003 -->
+<!-- link  http://localhost:3003 -->
+
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap");
+
+        body {
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background: #085bb9;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .back-icon {
+            color: white;
+            margin-right: 30px;
+            font-size: 22px;
+        }
+
+        .profile-pic {
+            border-radius: 32px;
+            margin-right: 16px;
+            width: 64px;
+            height: 64px;
+        }
+
+        .name {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            font-family: "Open Sans";
+            margin: 0px;
+            margin-bottom: 8px;
+        }
+
+        .status {
+            color: #e4e7eb;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: "Open Sans";
+            margin: 0px;
+        }
+        .chat-box-main-container{
+          margin-bottom: 5px;
+          background-color: rgb(162, 226, 162);
+          width: 100%;
+          border: 2px solid rgb(171, 231, 250);
+        }
+        
+        .message-input-cotainer{
+          margin-top: 5px;
+
+          display: flex;
+          justify-content: center;
+        }
+
+        .message-btn{
+          width: 60px;
+          margin-right: 2px;
+          color:cyan;
+          background-color: blue;
+          border-radius: 3px;
+          border: 0;
+        }
+
+        .message-input-element{
+          margin-right: 2px;
+          width: 300px;
+          padding: 6px 0 6px 12px;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+            align-items:flex-start;
+        }
+
+        .msg-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 36px;
+        }
+
+        .to-msg-container {
+          margin-left: 3px;
+            align-self: flex-end;
+        }
+
+
+        .from-msg-profile-pic {
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-left: 8px;
+            width: 40px;
+            height: 40px;
+        }
+        .to-msg-profile-pic{
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-left: 8px;
+            width: 40px;
+            height: 40px;
+            order: 1;
+        }
+
+        .msg-text-container {
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            display: flex;
+            max-width: 355px;
+            min-width: 80px;
+            justify-content: space-between;
+        }
+
+        .from-msg-text-container {
+            font-family: "Open Sans";
+            color: white;
+            background: #0967d2;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 12px;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .to-msg-text-container {
+            font-family: "Open Sans";
+            color: #323f4b;
+            background: #dce6f4;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .msg-text {
+            margin: 0px;
+            font-size: 16px;
+        }
+
+        .to-msg-text{
+            color:#323f4b;
+        }
+
+        .from-msg-text{
+            color: white;
+        }
+
+        .msg-time {
+            margin: 0px;
+            align-self: flex-end;
+            font-size: 12px;
+            min-width: 60px;
+            margin-left: 15px;
+        }
+
+        .from-msg-time{
+            color: #77b7ff;
+        }
+
+        .to-msg-time{
+            color:#7892B5
+        }
+
+        .date-container {
+            background: #cbd5e1;
+            border-radius: 8px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-left: 10px;
+            padding-right: 10px;
+            align-self: center;
+            margin-bottom: 36px;
+        }
+
+        .date {
+            font-weight: 600;
+            font-size: 14px;
+            color: #64748b;
+            margin: 0px;
+            font-family: "Roboto";
+        }
+
+        .footer {
+            height: 8vh;
+            padding-left: 24px;
+            padding-right: 24px;
+            padding-bottom: 48px;
+            padding-top: 15px;
+        }
+
+        .footer-input-container {
+            border: 1px solid #cbd2d9;
+            background: #f5f7fa;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .message-input {
+            margin-left: 16px;
+            margin-right: 16px;
+            margin-bottom: 8px;
+            margin-top: 8px;
+            color: #7b8794;
+            font-family: "Open Sans";
+            width: 100%;
+            border: 0px;
+            background: #f5f7fa;
+            outline: none;
+        }
+
+        .send {
+            width: 40px;
+            height: 40px;
+            background: #0967d2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 0px;
+            outline: none;
+        }
+
+        .send-icon {
+            color: white;
+            font-size: 24px;
+        }
+        /* .input {
+          position: absolute;
+          top: 90%;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 30px;
+        } */
+    </style>
+    
+    <style>
+      .logout{
+        color: red !important;
+        border-color: red !important;
+      }
+      .profile{
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+        background-color: #00fff2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .details{
+        display: flex;
+        align-items: center;
+        width: 50%;
+      }
+
+      @media (min-width:400px) {
+        .chat-btn{
+          border: none;
+          color: white;
+          border-radius: 10px;
+          width: 130px;
+          height: 40px;
+          background-color: #0967d2;
+        }
+
+        .remove-btn{
+          background-color: transparent;
+          color: red;
+          width: 90px;
+          border: 1px solid red;
+          margin-left:4px;
+        }
+      }
+
+      .chat-btn{
+        border: none;
+        color: white;
+        border-radius: 10px;
+        width: 80px;
+        height: 35px;
+        background-color: #0967d2;
+      }
+
+      .remove-btn{
+          background-color: transparent;
+          color: red;
+          width: 65px;
+          border: 1px solid red;
+          margin-left:4px;
+        }
+
+      .remove-btn:hover{
+        background-color: red;
+        color: white;
+        border: none;
+      }
+
+      .ul{
+        list-style: none;
+        padding: 0;
+      }
+      
+      @media (max-width:300px) {
+        .friend-details{
+          margin-left: 10px;
+        }
+      }
+      .friend-details{
+          margin-left: 10px;
+          font-size: 13px;
+        }
+
+      .li{
+        color: green;
+        border: 1px solid green;
+        border-radius: 10px;
+        margin: 2px;
+        margin-bottom: 5px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      h4{
+        margin: 0;
+      }
+
+      .friends-list-container{
+        padding: 10px;
+        padding-left: 0;
+        width: 100%;
+      }
+
+      .my-project-main{
+        padding: 10px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        background-color: aliceblue;
+        
+      }
+
+      .d-none{
+        display: none;
+      }
+      .user-main-page{
+        background-color:#dce6f4;
+        width: 100%;
+        padding-top: 10px;
+      }
+      header{
+        text-align: center;
+      }
+
+      .wlcome-page{
+        width: 100%;
+      }
+
+      #wlcomeText{
+        font-family: "Algerian";
+        color: green;
+      }
+
+      @media (min-width:300px) {
+        .navbar{
+          width: 100%;
+          display: flex;
+          justify-content: start !important;
+        }
+        .nav-element{
+          padding: 0;
+          margin-left: 10px;
+        }
+      }
+
+      .nav-element{
+        color: blue;
+        /* text-decoration: underline  ; */
+        padding: 2px 9px 0 9px;
+        /* background-color: #00fff2; */
+        border-radius: 8px;
+        border-bottom: 2px solid blue;
+        border-top: 2px solid blue;
+      }
+
+      .nav-element:hover{
+        color:green;
+        font-style: unset;
+      }
+
+      .navbar{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+      }
+      
+    </style>
+
+  </head>
+  <body>
+    <div class="my-project-main">
+      <div class="user-main-page d-non">
+        <nav id="navListcontainer" class="navbar">
+        </nav>
+        <script type="text/javascript">
+          window.retraveData = JSON.parse(localStorage.getItem("userDataInLocal"))
+          console.log(retraveData)
+          if ((retraveData === null)){
+            window.location.replace("http://localhost:3003/");
+          }
+          if (retraveData.isActive === 0){
+            window.location.replace("http://localhost:3003/");
+          }
+
+          const navList = document.getElementById("navListcontainer")
+          const listOfNavBarEle = [
+            {
+              id : "0",
+              is_navItem : true,
+              class_: "d-none",
+              name : "Home",
+              showSectionId : "home"
+            },
+            {
+              id:'1',
+              is_navItem : true,
+              name: "Friends List",
+              class_: "d-none",
+              showSectionId : "friendsListContainer"
+            },
+            {
+              id : "2",
+              is_navItem : false,
+              name : "Chat",
+              class_ : "d-none",
+              showSectionId : "chatBoxContainerMain"
+            },
+            {
+              id : "3",
+              is_navItem : true,
+              name : "Search Friend",
+              class_ : "d-none",
+              showSectionId : "serchFriendsContainer"
+            }
+          ]
+    
+          function navEleNavigation (id) {
+            for (let i of listOfNavBarEle){
+              if (i.id === id){
+                // listOfNavBarEle[id].class_ = ''
+                document.getElementById(i.showSectionId).classList.remove("d-none")
+                if (i.id === "1"){
+                  allFriendsList()
+                }
+              }
+              else{
+                document.getElementById(i.showSectionId).classList.add("d-none")
+              }
+            }
+          }
+          
+          // ========================================================================================================
+          const logoutEle = {
+            id : "4",
+            is_navItem : true,
+            name : "Logout",
+            class_ : "d-none"
+          }
+
+          function lougOutUser (id){
+            let data = {
+              id:id
+            };
+      
+            let options = {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+                  // Accept: "application/json"
+                  // body: JSON.stringify(data)
+              },
+              body: JSON.stringify(data)
+            }
+      
+            fetch('http://localhost:3003/logout/', options)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(jsonData) {
+              localStorage.setItem("userDataInLocal", JSON.stringify(jsonData));
+              window.location.replace("http://localhost:3003/");
+            });
+
+          }
+
+          function navItemLogOut (data) {
+            const id = data.id
+            let navEle = document.createElement('p')
+            navEle.classList.add("nav-element","logout")
+            navEle.textContent = data.name
+            navEle.id = id;
+            navList.appendChild(navEle)
+            navEle.onclick = function(){
+              lougOutUser(retraveData.id)
+            }
+          }
+          // ========================================================================================================
+
+          function navItem (data) {
+            const id = data.id
+            let navEle = document.createElement('p')
+            navEle.classList.add("nav-element")
+            navEle.textContent = data.name
+            navEle.id = id;
+            navListcontainer.appendChild(navEle)
+            navEle.onclick = function(){
+              navEleNavigation(id)
+            }
+          }
+          // Display NAV bar items 
+          for (let i of listOfNavBarEle){
+            if(i.is_navItem === true){
+              navItem(i)
+            }
+          }
+
+          navItemLogOut(logoutEle)
+
+    
+          let backBtn = document.getElementById("backBtn");
+    
+          function backBtnAction (){
+    
+          }
+        </script>
+      </div>
+      
+      <header id="home" class="wlcome-page">
+        <p id="wlcomeText">Welcom Back <b><span id="displayName"></span></b></p>
+
+        <script type="text/javascript">
+          document.getElementById("displayName").textContent = retraveData.name
+        </script>
+      </header>
+
+      <div class="friends-list-container d-none" id="friendsListContainer">
+        <ul class="ul" id="listOfFriends"> 
+          <!--start of list item-->
+          <!-- <li class="li">
+            <div  class="details">
+              <span class="profile">V</span>
+              <div class="friend-details">
+                <h4>Vamshi Krishna</h4>
+                <span>vamshi123</span>
+              </div>
+            </div>
+            
+            <div>
+              <button class="chat-btn">Chat</button>
+              <button class="chat-btn remove-btn">Remove</button>
+            </div>
+
+          </li> -->
+        </ul>
+
+        <script type="text/javascript">
+          let main = document.getElementById("main");
+          let ul = document.getElementById("listOfFriends");
+
+          function listItems (dataF){
+            let name = dataF.name
+            let userNameF = dataF.username
+            let li = document.createElement('li');
+            li.classList.add("li");
+            li.id = "list" + dataF.id;
+            ul.appendChild(li);
+
+            let details = document.createElement("div");
+            details.classList.add("details")
+            li.appendChild(details)
+
+            let span = document.createElement("span");
+            span.textContent = name[0]
+            span.classList.add('profile');
+            details.appendChild(span);
+
+            let friendDetrails = document.createElement("div");
+            friendDetrails.classList.add("friend-details");
+            details.appendChild(friendDetrails)
+
+            let h4 = document.createElement("h4");
+            h4.textContent = name
+            friendDetrails.appendChild(h4)
+
+            let spanId = document.createElement('span');
+            spanId.textContent = userNameF
+            friendDetrails.appendChild(spanId)
+
+            let btnConta = document.createElement("div");
+            li.appendChild(btnConta)
+
+            let chatBtn = document.createElement("button");
+            chatBtn.classList.add("chat-btn");
+            chatBtn.textContent = "Chat";
+            btnConta.appendChild(chatBtn);
+
+            chatBtn.onclick = function (dataF) {
+              chatContainer.innerHTML = '';
+              navEleNavigation("2")
+              const userId =JSON.parse(localStorage.getItem("userDataInLocal")) 
+              localStorage.setItem("chatFriendId", JSON.stringify({userId : userId.id, friendUserNameForChat : userNameF, nameF: name })) 
+              document.getElementById("profileName").textContent = JSON.parse(localStorage.getItem("chatFriendId")).nameF
+
+            }
+            
+            let remBtn = document.createElement("button");
+            remBtn.classList.add("chat-btn", "remove-btn");
+            remBtn.textContent = "Remove";
+            btnConta.appendChild(remBtn);
+
+          }
+
+          // listItems()
+
+          function allFriendsList () {
+            let options = {
+            method: "GET"
+            }
+            let url = "http://localhost:3003/getfriends/" + retraveData.id;
+    
+            fetch(url, options)
+              .then(function(response) {
+                  return response.json();
+              })
+              .then(function(jsonData) {
+                  ul.innerHTML = ""
+                  if (jsonData.error !== "no data found"){
+                    for (let j of jsonData){
+                      listItems(j)
+                    }
+                  }
+              })
+          }
+        </script>
+      </div>
+
+      <div class="chat-box-main-container d-none" id="chatBoxContainerMain">
+        <div class="header">
+          <i class="fa fa-arrow-left back-icon"></i>
+          <img src="https://res.cloudinary.com/dx94hnzfl/image/upload/v1612593409/Ellipse_1_2_uziel2.png" class="profile-pic" />
+          <div>
+            <p class="name" id="profileName"></p>
+            <p class="status">Online</p>
+          </div>
+        </div>
+        <div class="chat-container" id="chatContainer"></div>
+
+        <!-- <input type="text" class="" id="userIdInput" placeholder="user id"> -->
+        <div class="message-input-cotainer">
+          <input type="text" class="message-input-element" id="message" placeholder="Message" required>
+          <button class="message-btn" onclick="sendMsg()">Send</button>
+          <button class="message-btn" onclick="recMes()">Get</button>
+        </div>
+    
+        <script type="text/javascript">
+          let chatContainer = document.getElementById("chatContainer");
+          let userIdInput = JSON.parse(localStorage.getItem("chatFriendId")).friendUserNameForChat
+          let message = document.getElementById("message")
+    
+          function myMessege (data) {
+            let myMessegeTxt = document.createElement('div');
+            myMessegeTxt.classList.add("msg-container", "to-msg-container")
+            chatContainer.appendChild(myMessegeTxt)
+    
+            let proiflepic = document.createElement("img");
+            proiflepic.classList.add("to-msg-profile-pic");
+            proiflepic.src = ("https://res.cloudinary.com/dx94hnzfl/image/upload/v1612594885/Avatar_jarzmi.png")
+            myMessegeTxt.appendChild(proiflepic)
+    
+            let messageTextContainer = document.createElement("div");
+            messageTextContainer.classList.add("msg-text-container",  "to-msg-text-container");
+            myMessegeTxt.appendChild(messageTextContainer)
+    
+            let messageText = document.createElement("p");
+            messageText.classList.add("msg-text", "to-msg-text");
+            messageText.textContent = encry(data.message, 93917, encr="Fals");
+            messageTextContainer.appendChild(messageText)
+    
+            let messageTime = document.createElement("p");
+            messageTime.classList.add("msg-time", "to-msg-time")
+            messageTime.textContent = data.time;
+            messageTextContainer.appendChild(messageTime)
+          }
+    
+          function fromMessage (data) {
+            let fromMessegeTxt = document.createElement('div');
+            fromMessegeTxt.classList.add("msg-container")
+            chatContainer.appendChild(fromMessegeTxt)
+    
+            let proiflepic = document.createElement("img");
+            proiflepic.classList.add("from-msg-profile-pic");
+            proiflepic.src = ("https://res.cloudinary.com/dx94hnzfl/image/upload/v1612593409/Ellipse_1_2_uziel2.png")
+            fromMessegeTxt.appendChild(proiflepic)
+    
+            let messageTextContainer = document.createElement("div");
+            messageTextContainer.classList.add("msg-text-container",  "from-msg-text-container");
+            fromMessegeTxt.appendChild(messageTextContainer)
+    
+            let messageText = document.createElement("p");
+            messageText.classList.add("msg-text", "from-msg-text");
+            messageText.textContent = data.message;
+            messageTextContainer.appendChild(messageText)
+    
+            let messageTime = document.createElement("p");
+            messageTime.classList.add("msg-time", "from-msg-time")
+            messageTime.textContent = data.time;
+            messageTextContainer.appendChild(messageTime)
+          }
+    
+          function sendMsg () {
+            let now  = new Date().toLocaleString();
+          let userIdInput = JSON.parse(localStorage.getItem("chatFriendId")).friendUserNameForChat
+            
+            let data = {
+            userId : retraveData.username,
+            message : encry(message.value, 93917),
+            toUserId : userIdInput
+          };
+    
+            let options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+                // Accept: "application/json"
+                // body: JSON.stringify(data)
+            },
+            body: JSON.stringify(data)
+          }
+    
+            fetch('http://localhost:3003/sendmessage/', options)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(jsonData) {
+              if (jsonData.response === "Message sent Successfully"){
+                alert(jsonData.response)
+              }else{
+                alert("message sent fail")
+                
+              }
+            });
+          }
+    
+          function showMessagerInChat (jsonData) {
+            chatContainer.innerHTML = '';
+            for (let i of jsonData){
+              if (i.user_id === retraveData.username){
+                myMessege(i)
+              }
+              else {
+                fromMessage(i);
+              }
+            }
+    
+          }
+    
+          function recMes () { 
+          let userIdInput = JSON.parse(localStorage.getItem("chatFriendId")).friendUserNameForChat
+
+            chatContainer.innerHTML = '';
+            let data = {
+              userId : retraveData.username,
+              friendUserId : userIdInput
+            }
+    
+            let options = {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+                  // Accept: "application/json"
+                  // body: JSON.stringify(data)
+              },
+              body: JSON.stringify(data)
+            }
+    
+            fetch('http://localhost:3003/getmessage/', options)
+              .then(function(response) {
+                  return response.json();
+              })
+              .then(function(jsonData) {
+                  showMessagerInChat(jsonData)
+              });
+          }
+      
+        </script>
+      </div>
+
+      <div class="d-none" id="serchFriendsContainer"> 
+        <div>
+          <p></p>
+          <input type="text" id="friendUserName"/>
+          <button onclick="getFriendData()">Search</button>
+        </div>
+        <div>
+          <p id="eroorMsg">No data found</p>
+          <ul class="ul" id="searchFriendList"></ul>
+        </div>
+        <script type="text/javascript">
+          let searchFriendList = document.getElementById("searchFriendList");
+
+          // show fetched friend
+          function displayFetchedFrend (data){
+            let li = document.createElement('li');
+            li.classList.add("li");
+            li.id = "li" + data.id;
+            searchFriendList.appendChild(li);
+
+            let details = document.createElement("div");
+            details.classList.add("details")
+            li.appendChild(details)
+
+            let span = document.createElement("span");
+            span.textContent = data.name[0]
+            span.classList.add('profile');
+            details.appendChild(span);
+
+            let friendDetrails = document.createElement("div");
+            friendDetrails.classList.add("friend-details");
+            details.appendChild(friendDetrails)
+
+            let h4 = document.createElement("h4");
+            h4.textContent = data.name
+            friendDetrails.appendChild(h4)
+
+            let spanId = document.createElement('span');
+            spanId.textContent = data.username
+            friendDetrails.appendChild(spanId)
+
+            let btnConta = document.createElement("div");
+            li.appendChild(btnConta)
+
+            let chatBtn = document.createElement("button");
+            chatBtn.classList.add("chat-btn");
+            chatBtn.textContent = "Add";
+            btnConta.appendChild(chatBtn);
+            
+            chatBtn.onclick = function () {
+              saveFriend(data)
+            }
+
+            // let remBtn = document.createElement("button");
+            // remBtn.classList.add("chat-btn", "remove-btn");
+            // remBtn.textContent = "Remove";
+            // btnConta.appendChild(remBtn);
+
+          }
+
+          // To save a friend 
+          function saveFriend (fData){
+            let data = {
+              userId : retraveData.id,
+              friendUserId : fData.id
+            }
+    
+            let options = {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+                  // Accept: "application/json"
+                  // body: JSON.stringify(data)
+              },
+              body: JSON.stringify(data)
+            }
+            fetch('http://localhost:3003/savefriend/', options)
+              .then(function(response) {
+                  return response.json();
+              })
+              .then(function(jsonData) {
+                  alert(jsonData.response)
+              });
+
+          }
+
+          // To serch a friend using friend userName
+          function searchFriend (userName) {
+            let options = {
+              method: "GET"
+            }
+            let url = "http://localhost:3003/getfriend/" + userName
+            fetch(url, options)
+              .then(function(response) {
+                  return response.json();
+              })
+              .then(function(jsonData) {
+                if (jsonData.error === "no data found"){
+                  document.getElementById("eroorMsg").classList.toggle("d-none")
+                }else{
+                  document.getElementById("eroorMsg").classList.toggle("d-none")
+                  searchFriendList.innerHTML = '';
+                  for (let i of jsonData){
+                    displayFetchedFrend(i)
+                  }
+                  }
+              });
+          }
+
+          // Fetch friend data 
+          function getFriendData () {
+            let friendUserName = document.getElementById("friendUserName").value;
+            searchFriend(friendUserName)
+          }
+
+        </script>
+
+      </div>
+
+      <script type="text/javascript">
+        function encry (text_give, number, encr="True") {
+
+          let text = text_give
+          let code = number  // Must be a Number
+          let enc = encr
+
+          const alfHa ={
+                        a:'q', 
+                        b:'w', 
+                        c:'e', 
+                        d:'r', 
+                        e:'t', 
+                        f:'y', 
+                        g:'u', 
+                        h:'i', 
+                        i:'o', 
+                        j:'p', 
+                        k:'a', 
+                        l:'s', 
+                        m:'d', 
+                        n:'f', 
+                        o:'g', 
+                        p:'h', 
+                        q:'j', 
+                        r:'k', 
+                        s:'l', 
+                        t:'z', 
+                        u:'x', 
+                        v:'c', 
+                        w:'v', 
+                        x:'b', 
+                        y:'n', 
+                        z:'m', 
+                        '0':6,
+                        '1':3,
+                        '2':0,
+                        '3':1,
+                        '4':2,
+                        '5':7,
+                        '6':4,
+                        '7':9,
+                        '8':5,
+                        '9':8,}
+          const reverseAlfha = reAlfHa(alfHa)
+          function reAlfHa (a) {
+            let objKeys = Object.keys(a)
+            let objvaues = Object.values(a)
+            let recAlpha = {}
+            for (let i=0; i<objKeys.length;i++){
+              recAlpha[objvaues[i]] =  objKeys[i]
+            }
+            return recAlpha
+          }
+
+          let values = alfHa
+          if(encr !== "True"){
+            values = reverseAlfha
+          }
+
+          // console.log(a.toUpperCase() === a.toLowerCase());
+
+          function rotation (txt, num, a) {
+              let text = txt
+              for (let i = 0; i<num; i++){
+                let conve = '';
+                for (let j of text){
+                  if ((j.toUpperCase() !== j.toLowerCase()) || (Object.keys(a).includes(j))){
+                    conve = conve + a[j.toLowerCase()]
+                  }else{
+                    conve = conve + j
+                  }
+                }
+                text = conve
+              }
+              return text
+              
+          }
+
+          function encrypt (text) {
+            let num_list = String(code).split("")
+            let t = text
+            for (let i of num_list){
+              let num = parseInt(i)
+              t = rotation(t, num, values)
+              
+            }
+            return t
+          } 
+
+          return encrypt(text)
+
+        }
+
+        // call encry() method with arguments text what you want to encript or decript and key it must be an Number ex : encry("hello", 9391)
+        console.log(encry("2343684575", 9391))
+      </script>
+    </div>
+  </body>
+</html>

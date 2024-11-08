@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Interface</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Admin Interface</h1>
+  <div class="query-container">
+    <textarea id="query-input" placeholder="Enter DB query"></textarea>
+    <button id="execute-button">Execute Query</button>
+  </div>
+  <div class="result-container">
+    <table id="result-table">
+      <thead>
+        <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+          <th>...</th>
+        </tr>
+      </thead>
+      <tbody id="result-body">
+      </tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+style.css
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.query-container {
+  width: 80%;
+  margin: 40px auto;
+}
+
+#query-input {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+#execute-button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#execute-button:hover {
+  background-color: #3e8e41;
+}
+
+.result-container {
+  width: 80%;
+  margin: 40px auto;
+}
+
+#result-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#result-table th, #result-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+#result-table th {
+  background-color: #f0f0f0;
+}
+
+
+script.js
+
+const queryInput = document.getElementById('query-input');
+const executeButton = document.getElementById('execute-button');
+const resultTable = document.getElementById('result-table');
+const resultBody = document.getElementById('result-body');
+
+executeButton.addEventListener('click', async () => {
+  const query = queryInput.value.trim();
+  if (query) {
+    try {
+      const response = await fetch('/api/executeQuery', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
+      });
+      const data = await response.json();
+      renderResult(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+});
+
+function renderResult(data) {
+  resultBody.innerHTML = '';
+  data.forEach((row) => {
+    const rowElement = document.createElement('tr');
+    Object.keys(row).forEach((key) => {
+      const cellElement = document.createElement('td');
+      cellElement.textContent = row[key];
+      rowElement.appendChild(cellElement);
+    });
+    resultBody.appendChild(rowElement);
+  });
+}
+
+
+Server-side API endpoint (e.g., Node.js and Express)
+
+const express = require('express');
+const app = express();
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
+  host: 'your_host',
+  user: 'your_user',
+  password: 'your_password',
+  database: 'your_database',
+});
+
+db.connect((err) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log('Connected to database');
+  }
+});
+
+app.post('/api/executeQuery', (req, res) => {
+  const query = req.body.query;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send({ error: 'Error executing query' });
+    } else {
+      res.send(results);
+    }
+  });
+});
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
+
+

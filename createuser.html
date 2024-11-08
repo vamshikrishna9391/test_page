@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            color: #fff;
+            box-sizing: border-box;
+        }
+        .create_user_main_div{
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+        }
+        .form{
+            background-color:#000 ;
+            /* border: 0.1px solid #fff; */
+            border-radius: 2px 30px 30px 30px;
+            padding: 16px;
+            margin: 10px;
+            box-shadow: 2px 2px 8px;
+        }
+
+        .inputEl_card{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .inputEls{
+            width: 200px;
+            padding: 4px 0 4px 8px;
+            font-size: 10px;
+            color: #000 !important;
+            font-weight: bold;
+            border-radius: 2px;
+            border: 0;
+            outline: none;
+
+        }
+        .inputEl_gender_card{
+            padding: 1px 0 3px 3px;
+            border-radius: 1px 10px 20px 9px;
+            box-shadow: -1px -1px 1px;            
+        }
+
+        .labelEls{
+            font-size: 15px;
+            margin: 0;
+            margin-bottom: 4px;
+        }
+
+        .redioEl_card{
+            display: flex;
+            align-items: center;
+        }
+
+        .radioEl{
+            margin: 0;
+            margin-right: 2px;
+        }
+
+        .genderLEl{
+            font-size: 13px;
+            margin-right: 8px;
+        }
+
+        @media (max-width:300px) {
+            .create_user_main_div{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .form{
+                width: 80%;
+            }
+            .inputEls{
+                width: 95%;
+            }
+        }
+
+        .btns_card{
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+        }
+
+        .ancherEl{
+            font-size: 15px;
+            color: #fff;
+            text-align:;
+        }
+
+        .ancherEl:hover{
+            /* background-color: #fff; */
+            color: blue;
+        }
+
+        .errorpw{
+            border: #f00 solid 2px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="create_user_main_div">
+        <fieldset class="form">
+            <legend>Create User</legend>
+            <form onsubmit="submitDetails()" class="" id="form">
+
+                <div class="inputEl_card">
+                    <!-- <label for="name" class="labelEls">Full Name</label> -->
+                    <input id="name" type="text" class="inputEls" placeholder="Full Name" required>
+                </div>
+
+                <div class="inputEl_card">
+                    <!-- <label for="userName" class="labelEls">User Name</label> -->
+                    <input id="userName" type="text" class="inputEls" placeholder="User Name" required>
+                    
+                </div>
+                
+                <div class="inputEl_card">
+                    <!-- <label for="password" class="labelEls">Password</label> -->
+                    <input id="password" type="password" class="inputEls" placeholder="password" required>
+                    
+                </div>
+
+                <div class="inputEl_card">
+                    <!-- <label for="password" class="labelEls">Password</label> -->
+                    <input id="rePassword" type="password" class="inputEls" placeholder="Re Enter Password" required>
+                    
+                </div>
+
+                <div class="inputEl_gender_card">
+                    
+                    <p class="labelEls">Select Gender</p>
+
+                    <div class="redioEl_card"> 
+
+                        <input id="male" type="radio" class="radioEl" name="gender" value="male" checked>
+                        <label for="male" class="genderLEl">Male</label>
+
+                        <input id="female" type="radio" class="radioEl" name="gender" value="female">
+                        <label for="female" class="genderLEl">Female</label>
+
+                        <input id="others" type="radio" class="radioEl" name="gender" value="others">
+                        <label for="others" class="genderLEl">Others</label>
+
+                    </div>
+                </div>
+                <div class="btns_card">
+                    <div>
+                        <button type="reset" class="btn">Reset</button>
+                        <button type="submit" class="btn">Submit</button>
+                    </div>
+                    <!-- <a class="ancherEl" href="http://localhost:3002/">Login</a> -->
+                    <a class="ancherEl" href="http://localhost:3003/">Login</a>
+                </div>
+
+            </form>
+        </fieldset>
+        <button onclick="submitDetails()">click</button>
+    </div>
+
+    <script type="text/javascript">
+
+        let male = document.getElementById("male");
+        let female = document.getElementById("female");
+        let others = document.getElementById("others");
+        let gender = 'male'
+
+        male.addEventListener('change', function(event){
+            gender = event.target.value
+        })
+        female.addEventListener('change', function(event){
+            gender = event.target.value
+        })
+        others.addEventListener('change', function(event){
+            gender = event.target.value
+        })
+        
+        function submitDetails (){
+            event.preventDefault()
+            let name = document.getElementById('name');
+            let userName = document.getElementById('userName')
+            let password = document.getElementById('password')
+            let reEnterPass = document.getElementById('rePassword')
+
+            if (password.value === reEnterPass.value){
+                document.getElementById("rePassword").classList.remove("errorpw")
+                function result (jsonData) {
+                    if('response' in jsonData){
+                        alert(jsonData.response)
+                    }else{
+                        alert(jsonData.user)
+                    }
+                }
+
+
+                let data = {
+                    name: name.value,
+                    gender: gender,
+                    username : userName.value,
+                    password : password.value
+                };
+
+                // let data = {
+                //     name: "Rahul",
+                //     // gender: "Male",
+                //     username : "rahul123",
+                //     password : "rahul@123"
+                // };
+
+                console.log(data)
+                
+                let options = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                        // Accept: "application/json"
+                        // body: JSON.stringify(data)
+                    },
+                    body: JSON.stringify(data)
+                }
+
+                console.log(data)
+                console.log(options.body)
+                    
+                // fetch('https://test-1-riqt.onrender.com/user/', options)
+                fetch('http://localhost:3003/user/', options)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(jsonData) {
+                    result(jsonData)
+                });
+
+            }else{
+                document.getElementById("rePassword").classList.add("errorpw")
+            }
+            
+        }
+
+    </script>
+</body>
+</html>
